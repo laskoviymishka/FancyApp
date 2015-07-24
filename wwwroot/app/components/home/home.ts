@@ -5,7 +5,7 @@ import {RouterLink} from 'angular2/router';
   selector: 'home'
 })
 @View({
-  templateUrl: './components/home/home.tpl.html?v=<%= VERSION %>',
+  templateUrl: './components/home/home.tpl.html',
   directives: [RouterLink]
 })
 export class Home {

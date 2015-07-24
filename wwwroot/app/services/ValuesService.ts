@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:5001/api/';
 const VALUES_API_NAME = "Values/";
 
 export class ValuesService {
-	constructor( @Inject(Http) private http: Http) {
+	constructor(@Inject(Http) private http: Http) {
 		console.log("create values service");
 	}
 

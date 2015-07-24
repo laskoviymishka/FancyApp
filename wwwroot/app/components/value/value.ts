@@ -6,7 +6,7 @@ import {Value, IValue} from '../../models/model';
 	selector: 'values'
 })
 @View({
-	templateUrl: './components/value/value.tpl.html?v=<%= VERSION %>',
+	templateUrl: './components/value/value.tpl.html',
 	directives: [NgFor]
 })
 export class ValueComponent {
@@ -27,12 +27,10 @@ export class ValueComponent {
 
 	removeValue(index: number) {
 		this.valuesService.deleteValue(index);
-		this.refreshValues();
 	}
 
 	addValue(newname) {
 		this.valuesService.addValue(new Value(newname.value, 0));
-		this.refreshValues();
 		newname.value = null;
 	}
 }

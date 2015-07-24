@@ -14,7 +14,7 @@ namespace FancyApp.Controllers
             new ValueModel
             {
                 Id = 1,
-                Value = "value1"
+                Value = "value2"
             }
         };
 

@@ -16,7 +16,7 @@ import {ValuesService} from './services/ValuesService';
 	{ path: '/value', component: ValueComponent, as: 'value' },
 ])
 @View({
-	templateUrl: './app.html?v=<%= VERSION %>',
+	templateUrl: './app.html',
 	directives: [RouterOutlet, RouterLink]
 })
 class App { }
