@@ -4,7 +4,7 @@ import {RouteConfig, RouterOutlet, RouterLink, routerInjectables}from 'angular2/
 import {Inject} from 'angular2/di';
 
 import {Home} from './components/home/home';
-import {Value} from './components/value/value';
+import {ValueComponent} from './components/value/value';
 import {ValuesService} from './services/ValuesService';
 
 @Component({
@@ -13,7 +13,7 @@ import {ValuesService} from './services/ValuesService';
 })
 @RouteConfig([
 	{ path: '/', component: Home, as: 'home' },
-	{ path: '/value', component: Value, as: 'value' },
+	{ path: '/value', component: ValueComponent, as: 'value' },
 ])
 @View({
 	templateUrl: './app.html?v=<%= VERSION %>',

@@ -1,5 +1,6 @@
 import {Component, View, NgFor} from 'angular2/angular2';
 import {ValuesService} from '../../services/ValuesService';
+import {Value, IValue} from '../../models/model';
 
 @Component({
 	selector: 'values'
@@ -8,13 +9,13 @@ import {ValuesService} from '../../services/ValuesService';
 	templateUrl: './components/value/value.tpl.html?v=<%= VERSION %>',
 	directives: [NgFor]
 })
-export class Value {
-	values: Array<string>;
+export class ValueComponent {
+	values: Array<IValue>;
 	error: string = "";
 
 	constructor(public valuesService: ValuesService) {
 		console.log("create values component");
-		this.values = new Array<string>();
+		this.values = new Array<IValue>();
 		this.refreshValues();
 	}
 
@@ -30,7 +31,7 @@ export class Value {
 	}
 
 	addValue(newname) {
-		this.valuesService.addValue(newname.value);
+		this.valuesService.addValue(new Value(newname.value, 0));
 		this.refreshValues();
 		newname.value = null;
 	}
