@@ -31,13 +31,26 @@ $RECYCLE.BIN/
 # Thumbnails
 ._*
 
-# Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-
-# Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
 Network Trash Folder
 Temporary Items
 .apdisk
+logs
+*.log
+pids
+*.pid
+*.seed
+lib-cov
+coverage
+.grunt
+.lock-wscript
+build/Release
+node_modules
+*.dll
+*.pdb
+bin
+dist
+typings

@@ -1,0 +1,8 @@
+<p>Some values from back-end</p>
+<p>
+  <input #new-value (keyup)>
+  <button (click)="addValue(newValue)">Add value</button>
+</p>
+<ul>
+  <li *ng-for="#value of values">{{value}}</li>
+</ul>
