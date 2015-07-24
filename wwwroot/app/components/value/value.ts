@@ -10,15 +10,28 @@ import {ValuesService} from '../../services/ValuesService';
 })
 export class Value {
 	values: Array<string>;
+	error: string = "";
 
 	constructor(public valuesService: ValuesService) {
 		console.log("create values component");
 		this.values = new Array<string>();
+		this.refreshValues();
+	}
+
+	refreshValues() {
+		this.valuesService.getValues().subscribe(response => {
+			this.values = response;
+		});
+	}
+
+	removeValue(index: number) {
+		this.valuesService.deleteValue(index);
+		this.refreshValues();
 	}
 
 	addValue(newname) {
-		console.log(newname.value);
-		this.values.push(newname.value);
+		this.valuesService.addValue(newname.value);
+		this.refreshValues();
 		newname.value = null;
 	}
 }

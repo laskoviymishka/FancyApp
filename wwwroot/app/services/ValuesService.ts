@@ -1,28 +1,31 @@
-import {Http, httpInjectables} from 'angular2/http';
+import {Inject, Http} from 'angular2/angular2';
 import {Observable} from 'rx';
 
+const API_URL = 'http://localhost:5001/api/';
+const VALUES_API_NAME = "Values/";
+
 export class ValuesService {
-	constructor(public http: Http) {
+	constructor( @Inject(Http) private http: Http) {
 		console.log("create values service");
 	}
-	
-	getValues() {
-		
+
+	getValues(): Rx.Observable<Array<string>> {
+		return this.http.get(API_URL + VALUES_API_NAME).toRx().map(res => res.json());
 	}
-	
-	getValue(id: number) {
-		
+
+	getValue(id: number): Rx.Observable<string> {
+		return this.http.get(API_URL + VALUES_API_NAME + id).toRx();
 	}
-	
-	addValue(value: string){
-		
-	}	
-	
-	updateVaue(id: number, value: string){
-		
+
+	addValue(value: string) {
+		this.http.post(API_URL + VALUES_API_NAME, { value });
 	}
-	
-	deleteValue(id: number){
-		
+
+	updateVaue(id: number, value: string) {
+		this.http.put(API_URL + VALUES_API_NAME + id, { value });
+	}
+
+	deleteValue(id: number) {
+		this.http.delete(API_URL + VALUES_API_NAME + id);
 	}
 }

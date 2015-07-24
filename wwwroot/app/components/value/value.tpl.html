@@ -1,8 +1,13 @@
 <p>Some values from back-end</p>
+<button (click)="refreshValues()">Refresh values</button>
+<p>{{error}}</p>
 <p>
   <input #new-value (keyup)>
   <button (click)="addValue(newValue)">Add value</button>
 </p>
 <ul>
-  <li *ng-for="#value of values">{{value}}</li>
+  <li *ng-for="#value of values">
+    <p>{{value}}</p>
+    <button (click)="removeValue(4)">X </button>
+  </li>
 </ul>
