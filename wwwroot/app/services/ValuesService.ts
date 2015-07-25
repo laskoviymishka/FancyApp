@@ -10,6 +10,7 @@ const VALUES_API_NAME = "Values/";
 @Injectable()
 export class ValuesService {
 	constructor(private http: Http, private options: RequestOptions) {
+		this.options.headers.set("Content-Type", "application/json");
 		console.log("create values service");
 		console.log(options);
 	}
@@ -23,12 +24,11 @@ export class ValuesService {
 	}
 
 	addValue(value: IValue): Rx.Observable<any> {
-		this.options.headers.set("Content-Type", "application/json");
 		return this.http.post(API_URL + VALUES_API_NAME, JSON.stringify(value), this.options).toRx();
 	}
 
 	updateVaue(id: number, value: IValue): Rx.Observable<any> {
-		return this.http.put(API_URL + VALUES_API_NAME + id, JSON.stringify(value)).toRx();
+		return this.http.put(API_URL + VALUES_API_NAME + id, JSON.stringify(value), this.options).toRx();
 	}
 
 	deleteValue(id: number): Rx.Observable<any> {
