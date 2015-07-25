@@ -21,7 +21,7 @@ export class ValuesService {
 	}
 
 	addValue(value: IValue): Rx.Observable<any> {
-		return this.http.post(API_URL + VALUES_API_NAME, JSON.stringify(value)).toRx();
+		return this.http.post(API_URL + VALUES_API_NAME + "?Value=" + value.Value, JSON.stringify(value)).toRx();
 	}
 
 	updateVaue(id: number, value: IValue): Rx.Observable<any> {

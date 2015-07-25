@@ -39,7 +39,7 @@ namespace FancyApp.Controllers
 
 		// POST api/values
 		[HttpPost]
-		public void Post([FromBody]ValueModel value)
+		public void Post(ValueModel value)
 		{
 			value.Id = models.Count + 1;
 			models.Add(value);
