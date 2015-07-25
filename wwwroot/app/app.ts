@@ -20,4 +20,6 @@ import {ValuesService} from './services/ValuesService';
 })
 class App { }
 
-bootstrap(App, [ValuesService, routerInjectables, httpInjectables]);
+var appInjectables: any[] = [ValuesService];
+
+bootstrap(App, [appInjectables, routerInjectables, httpInjectables]);
