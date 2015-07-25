@@ -53,4 +53,3 @@ node_modules
 *.pdb
 bin
 dist
-typings
