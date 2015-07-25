@@ -9,57 +9,50 @@ namespace FancyApp.Controllers
 	[Route("api/[controller]")]
 	public class ValuesController : Controller
 	{
-		private static IList<ValueModel> models = new List<ValueModel>
+		private readonly SampleContext _db;
+
+		public ValuesController(SampleContext db)
 		{
-			new ValueModel
-			{
-				Id = 1,
-				SomeText = "value2"
-			}
-		};
+			_db = db;
+		}
 
 		// GET: api/values
 		[HttpGet]
 		public IEnumerable<ValueModel> Get()
 		{
-			return models;
+			return _db.Values;
 		}
 
 		// GET api/values/5
 		[HttpGet("{id}")]
 		public ValueModel Get(int id)
 		{
-			if (models.Count() > id)
-			{
-				return models[id];
-			}
-
-			throw new Exception();
+			return _db.Values.FirstOrDefault(t => t.Id == id);
 		}
 
 		// POST api/values
 		[HttpPost]
 		public void Post([FromBody] ValueModel value)
 		{
-			value.Id = models.Count + 1;
-			models.Add(value);
+			_db.Values.Add(value);
+			_db.SaveChanges();
 		}
 
 		// PUT api/values/5
 		[HttpPut("{id}")]
-		public void Put(int id, ValueModel value)
+		public void Put(int id, [FromBody] ValueModel value)
 		{
-			if (models.Count() > id)
-			{
-				models[id] = value;
-			}
+			var original = Get(id);
+			original.SomeText = value.SomeText;
+			_db.SaveChanges();
 		}
 
 		// DELETE api/values/5
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
-			models.Remove(models.FirstOrDefault(t => t.Id == id));
+			_db.Values.Remove(Get(id));
+			_db.SaveChanges();
 		}
 	}
 }

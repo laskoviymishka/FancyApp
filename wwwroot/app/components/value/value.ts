@@ -1,6 +1,6 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
 
-import {Component, View, NgFor} from 'angular2/angular2';
+import {Component, View, NgFor, formDirectives} from 'angular2/angular2';
 import {ValuesService} from '../../services/ValuesService';
 import {Value, IValue} from '../../models/model';
 
@@ -9,7 +9,7 @@ import {Value, IValue} from '../../models/model';
 })
 @View({
 	templateUrl: './components/value/value.tpl.html',
-	directives: [NgFor]
+	directives: [NgFor, formDirectives]
 })
 export class ValueComponent {
 	values: Array<IValue>;
@@ -25,6 +25,12 @@ export class ValueComponent {
 		this.valuesService.getValues().subscribe(response => {
 			this.values = response;
 			console.log(this.values);
+		});
+	}
+
+	updateValue(id: number, someText: string) {
+		this.valuesService.updateVaue(id, new Value(someText, id)).subscribe(_ => {
+			this.refreshValues();
 		});
 	}
 

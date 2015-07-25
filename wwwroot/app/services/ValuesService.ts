@@ -28,6 +28,7 @@ export class ValuesService {
 	}
 
 	updateVaue(id: number, value: IValue): Rx.Observable<any> {
+		console.log(id, value);
 		return this.http.put(API_URL + VALUES_API_NAME + id, JSON.stringify(value), this.options).toRx();
 	}
 

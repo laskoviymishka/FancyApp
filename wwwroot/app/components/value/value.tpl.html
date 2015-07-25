@@ -2,12 +2,15 @@
 <button (click)="refreshValues()">Refresh values</button>
 <p>{{error}}</p>
 <p>
-  <input #new-value (keyup)>
-  <button (click)="addValue(newValue)">Add value</button>
+	<input #new-value (keyup)>
+	<button (click)="addValue(newValue)">Add value</button>
 </p>
 <ul>
-  <li *ng-for="#value of values">
-    <p>{{value.SomeText}}</p>
-    <button (click)="removeValue(value.Id)">X </button>
-  </li>
+	<li *ng-for="#value of values">
+		<p>
+			<input type="text" #updated-value (keyup) [value]=value.SomeText />
+			<button (click)="updateValue(value.Id, updatedValue.value)">Save changes</button>
+		</p>
+		<button (click)="removeValue(value.Id)">X </button>
+	</li>
 </ul>
