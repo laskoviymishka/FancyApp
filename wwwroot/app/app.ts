@@ -20,4 +20,4 @@ import {ValuesService} from './services/ValuesService';
 })
 class App { }
 
-bootstrap(App, [routerInjectables, httpInjectables, ValuesService]);
+bootstrap(App, [ValuesService, routerInjectables, httpInjectables]);

@@ -14,7 +14,7 @@ namespace FancyApp.Controllers
 			new ValueModel
 			{
 				Id = 1,
-				Value = "value2"
+				SomeText = "value2"
 			}
 		};
 
@@ -39,7 +39,7 @@ namespace FancyApp.Controllers
 
 		// POST api/values
 		[HttpPost]
-		public void Post(ValueModel value)
+		public void Post([FromBody] ValueModel value)
 		{
 			value.Id = models.Count + 1;
 			models.Add(value);
@@ -59,7 +59,7 @@ namespace FancyApp.Controllers
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
-			models.Remove(models.Single(t => t.Id == id));
+			models.Remove(models.FirstOrDefault(t => t.Id == id));
 		}
 	}
 }

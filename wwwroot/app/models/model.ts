@@ -1,14 +1,14 @@
 export interface IValue {
 	Id: number;
-	Value: string;
+	SomeText: string;
 }
 
 export class Value implements IValue{
 	Id: number;
-	Value: string;
+	SomeText: string;
 	
 	constructor(value: string, id: number){
-		this.Value = value;
+		this.SomeText = value;
 		this.Id = id;
 	}
 }

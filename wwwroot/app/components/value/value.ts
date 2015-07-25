@@ -24,6 +24,7 @@ export class ValueComponent {
 	refreshValues() {
 		this.valuesService.getValues().subscribe(response => {
 			this.values = response;
+			console.log(this.values);
 		});
 	}
 

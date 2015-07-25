@@ -20,9 +20,7 @@ namespace FancyApp
 		// Use this method to add services to the container
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddLogging();
 			services.AddMvc();
-			services.AddCors();
 			services.AddDirectoryBrowser();
 		}
 
