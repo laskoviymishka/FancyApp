@@ -10,6 +10,7 @@ using Microsoft.Framework.DependencyInjection;
 using FancyApp.Model;
 using Microsoft.Framework.Configuration;
 using Microsoft.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FancyApp
 {
@@ -30,13 +31,18 @@ namespace FancyApp
 			services.AddAuthorization();
 			services.AddEntityFramework()
 				.AddSqlServer()
-				.AddDbContext<SampleContext>(options => options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=FancyApp;Trusted_Connection=True;"));
+				.AddDbContext<SampleContext>();
+
+			services.AddIdentity<ApplicationUser, IdentityRole>()
+				.AddEntityFrameworkStores<SampleContext>()
+				.AddDefaultTokenProviders();
 		}
 
 		// Configure is called after ConfigureServices is called.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
 			app.UseMvc();
+			app.UseIdentity();
 			app.UseSinglePageApplicationServer("/index.html");
 		}
 	}
