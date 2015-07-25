@@ -8,6 +8,6 @@
 <ul>
   <li *ng-for="#value of values">
     <p>{{value.Value}}</p>
-    <button (click)="removeValue(4)">X </button>
+    <button (click)="removeValue(value.Id)">X </button>
   </li>
 </ul>

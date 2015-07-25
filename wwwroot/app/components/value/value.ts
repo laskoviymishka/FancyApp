@@ -1,3 +1,5 @@
+/// <reference path="../../../../typings/tsd.d.ts" />
+
 import {Component, View, NgFor} from 'angular2/angular2';
 import {ValuesService} from '../../services/ValuesService';
 import {Value, IValue} from '../../models/model';
@@ -26,11 +28,16 @@ export class ValueComponent {
 	}
 
 	removeValue(index: number) {
-		this.valuesService.deleteValue(index);
+		this.valuesService.deleteValue(index).subscribe(_ => {
+			this.refreshValues();
+		});
 	}
 
 	addValue(newname) {
-		this.valuesService.addValue(new Value(newname.value, 0));
+		this.valuesService.addValue(new Value(newname.value, 0)).subscribe(_ => {
+			this.refreshValues();
+		});
+
 		newname.value = null;
 	}
 }

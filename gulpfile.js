@@ -148,7 +148,7 @@ gulp.task('build.js.dev', function () {
 });
 
 gulp.task('build.assets.dev', ['build.js.dev'], function () {
-	return gulp.src(['./wwwroot/app/**/*.html', './wwwroot/app/**/*.css'])
+	return gulp.src(['./wwwroot/app/**/*.html', '!./wwwroot/app/index.html', './wwwroot/app/**/*.css'])
 	  .pipe(gulp.dest(PATH.dest.dev.all));
 });
 
@@ -157,8 +157,6 @@ gulp.task('build.index.dev', function () {
 	return gulp.src('./wwwroot/app/index.html')
 		.pipe(inject(target, { transform: transformPath('dev') }))
 		.pipe(template(templateLocals()))
-		//.pipe(gulp.dest(PATH.dest.all))
-		//.pipe(gulp.dest(PATH.dest.dev.all))
 		.pipe(gulp.dest(PATH.root));
 });
 
@@ -244,12 +242,12 @@ function registerBumpTasks() {
 }
 
 function serveSPA(env) {
-	var app;
-	app = express().use(APP_BASE, serveStatic(join(__dirname, PATH.dest[env].all)));
-	app.all(APP_BASE + '*', function (req, res, next) {
-		res.sendFile(join(__dirname, PATH.dest[env].all, 'index.html'));
-	});
-	app.listen(port, function () {
-		openResource('http://localhost:' + port + APP_BASE);
-	});
+	//var app;
+	//app = express().use(APP_BASE, serveStatic(join(__dirname, PATH.dest[env].all)));
+	//app.all(APP_BASE + '*', function (req, res, next) {
+	//	res.sendFile(join(__dirname, PATH.dest[env].all, 'index.html'));
+	//});
+	//app.listen(port, function () {
+	//	openResource('http://localhost:' + port + APP_BASE);
+	//});
 }
