@@ -37,9 +37,8 @@ namespace FancyApp.Controllers
 			return _db.Users.FirstOrDefault(t => t.Id == id);
 		}
 
-		[HttpPost]
-		[Route("SignUp")]
-		public async Task SignUp([FromQuery]string userName, [FromQuery]string password)
+		[HttpPost("SignUp")]
+		public async Task SignUp([FromBody]string userName, [FromBody]string password)
 		{
 			var user = new ApplicationUser
 			{
@@ -50,17 +49,15 @@ namespace FancyApp.Controllers
 			Debug.WriteLine(string.Format("Sign in result {0}", result.Succeeded));
 		}
 
-		[HttpPost]
-		[Route("SignIn")]
-		public async Task SignIn([FromQuery]string userName, [FromQuery]string password)
+		[HttpPost("SignIn")]
+		public async Task SignIn([FromBody]string userName, [FromBody]string password)
 		{
 			var user = new ApplicationUser { };
 			var result = await _signInManager.PasswordSignInAsync(userName, password, true, true);
 			Debug.WriteLine(string.Format("Sign in result {0}", result.Succeeded));
 		}
 
-		[HttpPost]
-		[Route("SignIn")]
+		[HttpPost("SignOut")]
 		public void SignOut()
 		{
 			_signInManager.SignOut();

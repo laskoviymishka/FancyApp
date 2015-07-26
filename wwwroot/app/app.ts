@@ -3,16 +3,22 @@ import {Component, View, bootstrap, httpInjectables, Inject} from 'angular2/angu
 import {RouteConfig, RouterOutlet, RouterLink, routerInjectables}from 'angular2/router';
 
 import {Home} from './components/home/home';
+import {Account} from './components/account/account';
 import {ValueComponent} from './components/value/value';
+
 import {ValuesService} from './services/ValuesService';
+import {AccountService} from './services/AccountService';
+
+var appInjectables: any[] = [ValuesService, AccountService];
 
 @Component({
 	selector: 'app',
-	appInjector: [ValuesService, httpInjectables]
+	appInjector: [appInjectables, httpInjectables]
 })
 @RouteConfig([
 	{ path: '/', component: Home, as: 'home' },
 	{ path: '/value', component: ValueComponent, as: 'value' },
+	{ path: '/account', component: Account, as: 'account' },
 ])
 @View({
 	templateUrl: './app.html',
@@ -20,6 +26,5 @@ import {ValuesService} from './services/ValuesService';
 })
 class App { }
 
-var appInjectables: any[] = [ValuesService];
 
 bootstrap(App, [appInjectables, routerInjectables, httpInjectables]);

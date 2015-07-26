@@ -12,6 +12,7 @@ var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
 var template = require('gulp-template');
 var tsc = require('gulp-typescript');
+var tsProject = require('tsproject');
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 
@@ -169,6 +170,9 @@ gulp.task('build.dev', function (done) {
 });
 
 // --------------
+// Testing.
+
+// --------------
 // Version.
 
 registerBumpTasks();
@@ -182,14 +186,14 @@ gulp.task('bump.reset', function () {
 // --------------
 // Serve dev.
 
+gulp.task('default', ['serve.dev']);
+
 gulp.task('serve.dev', ['build.dev'], function () {
 	var app;
 
 	watch('./wwwroot/app/**', function () {
 		gulp.start('build.app.dev');
 	});
-
-	serveSPA('dev');
 });
 
 // --------------
@@ -239,15 +243,4 @@ function registerBumpTasks() {
 			runSequence(semverTaskName, 'build.app.prod', done);
 		});
 	});
-}
-
-function serveSPA(env) {
-	//var app;
-	//app = express().use(APP_BASE, serveStatic(join(__dirname, PATH.dest[env].all)));
-	//app.all(APP_BASE + '*', function (req, res, next) {
-	//	res.sendFile(join(__dirname, PATH.dest[env].all, 'index.html'));
-	//});
-	//app.listen(port, function () {
-	//	openResource('http://localhost:' + port + APP_BASE);
-	//});
 }
